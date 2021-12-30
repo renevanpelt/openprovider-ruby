@@ -48,7 +48,6 @@ module OpenProvider
     def call_api(http_method, path, opts = {})
       request = build_request(http_method, path, opts)
       response = request.run
-
       if @config.debugging
         @config.logger.debug "HTTP response body ~BEGIN~\n#{response.body}\n~END~\n"
       end
@@ -88,7 +87,6 @@ module OpenProvider
     def build_request(http_method, path, opts = {})
       url = build_request_url(path)
       http_method = http_method.to_sym.downcase
-
       header_params = @default_headers.merge(opts[:header_params] || {})
       query_params = opts[:query_params] || {}
       form_params = opts[:form_params] || {}
@@ -121,7 +119,7 @@ module OpenProvider
           @config.logger.debug "HTTP request body param ~BEGIN~\n#{req_body}\n~END~\n"
         end
       end
-
+      
       request = Typhoeus::Request.new(url, req_opts)
       download_file(request) if opts[:return_type] == 'File'
       request

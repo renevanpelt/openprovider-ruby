@@ -127,7 +127,7 @@ module OpenProvider
     def initialize
       @scheme = 'https'
       @host = 'api.openprovider.eu'
-      @base_path = 'https://api.openprovider.eu/'
+      @base_path = ''
       @api_key = {}
       @api_key_prefix = {}
       @timeout = 0
